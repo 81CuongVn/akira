@@ -1,0 +1,57 @@
+{
+  "name": "akira",
+  "version": "0.0.1",
+  "description": "🤖 A multipurpose Discord bot built with discord.js.",
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "multipurpose",
+    "akira"
+  ],
+  "homepage": "https://github.com/daniellwdb/akira#readme",
+  "bugs": {
+    "url": "https://github.com/daniellwdb/akira/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniellwdb/akira.git"
+  },
+  "license": "MIT",
+  "author": "daniellwdb <d.wijdenbosch@icloud.com>",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "tsc",
+    "prepare": "husky install",
+    "start": "nodemon ./src/index.ts"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "prettier": {
+    "semi": false
+  },
+  "dependencies": {
+    "convict": "^6.2.3",
+    "discord.js": "^13.8.0",
+    "pino": "^8.0.0",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/convict": "^6.1.1",
+    "dotenv": "^16.0.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.0",
+    "nodemon": "^2.0.16",
+    "pino-pretty": "^8.0.0",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
