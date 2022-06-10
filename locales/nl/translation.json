@@ -1,0 +1,18 @@
+{
+  "commands": {
+    "suggest": {
+      "name": "suggestie",
+      "description": "Deel je bug of idee voor deze bot.",
+      "modal_title": "Deel je bug of idea",
+      "text_input_component_label": "Je bericht",
+      "modal_submit_reply": "Bedankt voor het inzenden!"
+    },
+    "deploy": {
+      "name": "deploy",
+      "description": "Deploy commando's naar de server van de eigenaar van de bot."
+    }
+  },
+  "common": {
+    "condition_failed": "Je hebt niet de juiste rechten om deze actie uit te voeren."
+  }
+}

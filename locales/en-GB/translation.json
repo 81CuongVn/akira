@@ -1,0 +1,18 @@
+{
+  "commands": {
+    "suggest": {
+      "name": "suggest",
+      "description": "Share your bug or idea for this bot.",
+      "modal_title": "Share your bug or idea",
+      "text_input_component_label": "Your message",
+      "modal_submit_reply": "Thanks for your submission!"
+    },
+    "deploy": {
+      "name": "deploy",
+      "description": "Deploys commands to the server of the bot owner."
+    }
+  },
+  "common": {
+    "condition_failed": "You don't have the required permission to perform this action."
+  }
+}
