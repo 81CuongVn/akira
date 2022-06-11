@@ -1,11 +1,22 @@
 import convict from "convict"
 
+if (process.env["NODE_ENV"] !== "production") {
+  await import("dotenv/config")
+}
+
 export const config = convict({
   env: {
     doc: "The application environment.",
     format: ["production", "development"],
     default: "development",
     env: "NODE_ENV",
+  },
+  unsplashAccessKey: {
+    doc: "The Unsplash API access key.",
+    format: "*",
+    default: undefined,
+    env: "UNSPLASH_ACCESS_KEY",
+    sensitive: true,
   },
   bot: {
     token: {
@@ -35,9 +46,5 @@ export const config = convict({
     },
   },
 })
-
-if (config.get("env") !== "production") {
-  await import("dotenv/config")
-}
 
 config.validate({ allowed: "strict" })

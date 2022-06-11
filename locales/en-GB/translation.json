@@ -10,9 +10,23 @@
     "deploy": {
       "name": "deploy",
       "description": "Deploys commands to the server of the bot owner."
+    },
+    "panda": {
+      "name": "panda",
+      "description": "Receive a cute, randomly selected panda image!",
+      "options": {
+        "hide": {
+          "name": "hide",
+          "description": "Hide the panda image from the public chat."
+        }
+      },
+      "no_description": "This photo has no description.",
+      "attribution": "Photo by {{author}}",
+      "powered_by": "Powered by [Unsplash]({{- url}})"
     }
   },
   "common": {
-    "condition_failed": "You don't have the required permission to perform this action."
+    "condition_failed": "You don't have the required permission to perform this action.",
+    "something_went_wrong": "Something went wrong. Please try again later. If the problem persists, please contact the bot owner by using the {{suggestCommandName}} command."
   }
 }

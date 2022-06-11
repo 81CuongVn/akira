@@ -10,9 +10,23 @@
     "deploy": {
       "name": "deploy",
       "description": "Deploy commando's naar de server van de eigenaar van de bot."
+    },
+    "panda": {
+      "name": "panda",
+      "description": "Ontvang een schattige, willekeurige panda foto!",
+      "options": {
+        "hide": {
+          "name": "verbergen",
+          "description": "Verberg de panda foto voor de publieke chat."
+        }
+      },
+      "no_description": "Deze foto heeft geen beschrijving.",
+      "attribution_prefix": "Foto door {{author}}",
+      "powered_by": "Mede mogelijk gemaakt door [Unsplash]({{- url}})"
     }
   },
   "common": {
-    "condition_failed": "Je hebt niet de juiste rechten om deze actie uit te voeren."
+    "condition_failed": "Je hebt niet de juiste rechten om deze actie uit te voeren.",
+    "something_went_wrong": "Er is iets fout gegaan. Probeer het later opnieuw. Als het probleem aanhoudt, neem dan contact op met de eigenaar van de bot via het {{suggestCommandName}} commando."
   }
 }
