@@ -7,7 +7,7 @@ COPY ./locales ./locales
 COPY ./src ./src
 COPY ./package*.json ./
 COPY ./tsconfig.json .
-RUN npm pkg set scripts.prepare=""
+RUN npm pkg set prepare=""
 RUN npm ci
 RUN npm run build
 
