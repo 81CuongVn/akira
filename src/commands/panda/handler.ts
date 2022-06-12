@@ -46,16 +46,18 @@ export const execute = async (
       url: `${randomPhoto.response.user.links.html}?${urlSearchParams}`,
     })
     .setDescription(
-      `${
-        randomPhoto.response.description ??
-        randomPhoto.response.alt_description ??
-        i18next.t("commands.panda.no_description", { lng: interaction.locale })
-      }\n${i18next.t("commands.panda.powered_by", {
+      i18next.t("commands.panda.powered_by", {
         lng: interaction.locale,
         url: `https://unsplash.com/?${urlSearchParams}`,
-      })}`
+      })
     )
     .setImage(randomPhoto.response.urls.regular)
+    .setFooter({
+      text:
+        randomPhoto.response.description ??
+        randomPhoto.response.alt_description ??
+        i18next.t("commands.panda.no_description", { lng: interaction.locale }),
+    })
 
   interaction.reply({ embeds: [messageEmbed], ephemeral: hide ?? true })
 }
