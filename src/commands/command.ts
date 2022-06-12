@@ -1,30 +1,35 @@
-import type { Locale } from "discord-api-types/v10"
 import type {
   ApplicationCommandData,
-  BaseCommandInteraction,
+  ChatInputCommandInteraction,
   ChatInputApplicationCommandData,
-  CommandInteraction,
-  ContextMenuInteraction,
+  ContextMenuCommandInteraction,
   MessageApplicationCommandData,
   UserApplicationCommandData,
+  Locale,
+  Awaitable,
+  CommandInteraction,
 } from "discord.js"
 
 export type CommandCondition = (
   interaction: CommandInteraction<"cached">
 ) => Promise<boolean>
 
-type ApplicationCommandBase<T extends BaseCommandInteraction> =
-  ApplicationCommandData & {
-    conditions?: CommandCondition[]
-    execute(interaction: T, locale: Locale): Promise<unknown>
-  }
+type ApplicationCommandBase<
+  T extends ChatInputCommandInteraction | ContextMenuCommandInteraction
+> = ApplicationCommandData & {
+  // * Conditions are checked at runtime.
+  conditions?: CommandCondition[]
+  execute(interaction: T, locale: Locale): Awaitable<void>
+}
 
 type ContextMenuCommand = ApplicationCommandBase<
-  ContextMenuInteraction<"cached">
+  ContextMenuCommandInteraction<"cached">
 > &
   (UserApplicationCommandData | MessageApplicationCommandData)
 
-type SlashCommand = ApplicationCommandBase<CommandInteraction<"cached">> &
+type SlashCommand = ApplicationCommandBase<
+  ChatInputCommandInteraction<"cached">
+> &
   ChatInputApplicationCommandData
 
 export type Command = ContextMenuCommand | SlashCommand

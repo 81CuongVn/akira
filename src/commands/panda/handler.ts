@@ -1,10 +1,12 @@
-import { CommandInteraction, MessageEmbed } from "discord.js"
+import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js"
 import i18next from "i18next"
 import { unsplash } from "../../lib/unsplash"
 import { logger } from "../../logger"
 
-export const execute = async (interaction: CommandInteraction<"cached">) => {
-  const hide = interaction.options.getBoolean("hide", true)
+export const execute = async (
+  interaction: ChatInputCommandInteraction<"cached">
+) => {
+  const hide = interaction.options.getBoolean("hide")
   const randomPhoto = await unsplash.photos.getRandom({
     query: "panda",
     contentFilter: "high",
@@ -33,8 +35,8 @@ export const execute = async (interaction: CommandInteraction<"cached">) => {
     utm_medium: "referral",
   })
 
-  const messageEmbed = new MessageEmbed()
-    .setColor("BLUE")
+  const messageEmbed = new EmbedBuilder()
+    .setColor("Blue")
     .setAuthor({
       iconURL: randomPhoto.response.user.profile_image.small,
       name: i18next.t("commands.panda.attribution", {
@@ -55,5 +57,5 @@ export const execute = async (interaction: CommandInteraction<"cached">) => {
     )
     .setImage(randomPhoto.response.urls.regular)
 
-  interaction.reply({ embeds: [messageEmbed], ephemeral: hide })
+  interaction.reply({ embeds: [messageEmbed], ephemeral: hide ?? true })
 }

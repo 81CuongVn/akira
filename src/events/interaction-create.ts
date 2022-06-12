@@ -1,13 +1,15 @@
-import type { Locale } from "discord-api-types/v10"
-import type { CacheType, Interaction } from "discord.js"
+import {
+  AnyInteraction,
+  ApplicationCommandType,
+  InteractionType,
+} from "discord.js"
 import i18next from "i18next"
+import { checkConditions } from "../commands/conditions"
 import { logger } from "../logger"
 
-export const interactionCreateEvent = async (
-  interaction: Interaction<CacheType>
-) => {
+export const interactionCreateEvent = async (interaction: AnyInteraction) => {
   if (
-    (!interaction.isCommand() && !interaction.isContextMenu()) ||
+    interaction.type !== InteractionType.ApplicationCommand ||
     !interaction.inCachedGuild()
   ) {
     return
@@ -25,36 +27,53 @@ export const interactionCreateEvent = async (
   }
 
   const isSlashCommand =
-    interaction.isCommand() && command.type === "CHAT_INPUT"
+    interaction.isChatInputCommand() &&
+    command.type === ApplicationCommandType.ChatInput
 
   const isContextMenuCommand =
-    interaction.isContextMenu() &&
-    (command.type === "MESSAGE" || command.type === "USER")
+    interaction.isContextMenuCommand() &&
+    (command.type === ApplicationCommandType.Message ||
+      command.type === ApplicationCommandType.User)
 
   try {
     if (isSlashCommand) {
       if (command.conditions) {
-        const conditionsResults = await Promise.all(
-          command.conditions.map((condition) => condition(interaction))
-        )
-        const allConditionsMet = conditionsResults.every(
-          (condition) => condition === true
+        const allConditionsMet = await checkConditions(
+          command.conditions,
+          interaction
         )
 
         if (allConditionsMet) {
-          await command.execute(interaction, interaction.locale as Locale)
+          await command.execute(interaction, interaction.locale)
         } else {
           await interaction.reply(
             i18next.t("common.condition_failed", {
-              lng: interaction.locale as Locale,
+              lng: interaction.locale,
             })
           )
         }
       } else {
-        await command.execute(interaction, interaction.locale as Locale)
+        await command.execute(interaction, interaction.locale)
       }
     } else if (isContextMenuCommand) {
-      await command.execute(interaction, interaction.locale as Locale)
+      if (command.conditions) {
+        const allConditionsMet = await checkConditions(
+          command.conditions,
+          interaction
+        )
+
+        if (allConditionsMet) {
+          await command.execute(interaction, interaction.locale)
+        } else {
+          await interaction.reply(
+            i18next.t("common.condition_failed", {
+              lng: interaction.locale,
+            })
+          )
+        }
+      } else {
+        await command.execute(interaction, interaction.locale)
+      }
     }
   } catch (error) {
     if (error instanceof Error) {

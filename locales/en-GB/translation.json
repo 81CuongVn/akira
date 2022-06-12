@@ -17,7 +17,7 @@
       "options": {
         "hide": {
           "name": "hide",
-          "description": "Hide the panda image from the public chat."
+          "description": "Hide the panda image from the public chat. (defaults to True)"
         }
       },
       "no_description": "This photo has no description.",

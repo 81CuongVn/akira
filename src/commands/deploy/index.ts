@@ -1,11 +1,11 @@
-import { Locale } from "discord-api-types/v10"
+import { ApplicationCommandType, PermissionFlagsBits, Locale } from "discord.js"
 import i18next from "i18next"
 import type { Command } from "../command"
 import { conditions } from "../conditions"
 import { execute } from "./handler"
 
 export const deployCommand: Command = {
-  type: "CHAT_INPUT",
+  type: ApplicationCommandType.ChatInput,
   name: i18next.t("commands.deploy.name", {
     lng: Locale.EnglishGB,
   }),
@@ -23,5 +23,8 @@ export const deployCommand: Command = {
     }),
   },
   conditions: [conditions.isBotOwner],
+  // TODO: Once possible, only make this command available to the bot owner only.
+  defaultMemberPermissions: [PermissionFlagsBits.Administrator],
+  dmPermission: false,
   execute,
 }

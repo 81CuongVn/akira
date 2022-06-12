@@ -15,10 +15,12 @@ export const execute = async (interaction: CommandInteraction<"cached">) => {
   // Using dynamic import to make sure translations are available
   const commands = await import("..")
 
-  await testGuild.commands.set(Object.values(commands))
+  const applicationCommands = await testGuild.commands.set(
+    Object.values(commands)
+  )
 
   interaction.reply({
-    content: `Deployed ${Object.values(commands).length} commands.`,
+    content: `Deployed ${applicationCommands.size} commands.`,
     ephemeral: true,
   })
 }

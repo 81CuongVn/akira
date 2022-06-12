@@ -1,10 +1,10 @@
 import i18next from "i18next"
 import type { Command } from "../command"
-import { Locale } from "discord-api-types/v10"
 import { execute } from "./handler"
+import { ApplicationCommandType, Locale } from "discord.js"
 
 export const suggestCommand: Command = {
-  type: "CHAT_INPUT",
+  type: ApplicationCommandType.ChatInput,
   name: i18next.t("commands.suggest.name", {
     lng: Locale.EnglishGB,
   }),

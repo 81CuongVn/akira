@@ -1,10 +1,15 @@
 import i18next from "i18next"
 import type { Command } from "../command"
-import { Locale } from "discord-api-types/v10"
 import { execute } from "./handler"
+import {
+  PermissionFlagsBits,
+  ApplicationCommandType,
+  ApplicationCommandOptionType,
+  Locale,
+} from "discord.js"
 
 export const pandaCommand: Command = {
-  type: "CHAT_INPUT",
+  type: ApplicationCommandType.ChatInput,
   name: i18next.t("commands.panda.name", {
     lng: Locale.EnglishGB,
   }),
@@ -23,8 +28,7 @@ export const pandaCommand: Command = {
   },
   options: [
     {
-      type: "BOOLEAN",
-      required: true,
+      type: ApplicationCommandOptionType.Boolean,
       name: i18next.t("commands.panda.options.hide.name", {
         lng: Locale.EnglishGB,
       }),
@@ -42,6 +46,10 @@ export const pandaCommand: Command = {
         }),
       },
     },
+  ],
+  defaultMemberPermissions: [
+    PermissionFlagsBits.AttachFiles,
+    PermissionFlagsBits.EmbedLinks,
   ],
   execute,
 }

@@ -17,7 +17,7 @@
       "options": {
         "hide": {
           "name": "verbergen",
-          "description": "Verberg de panda foto voor de publieke chat."
+          "description": "Verberg de panda foto voor de publieke chat. (Standaard True)"
         }
       },
       "no_description": "Deze foto heeft geen beschrijving.",
