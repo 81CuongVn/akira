@@ -13,7 +13,6 @@ RUN npm run build
 
 FROM base AS app
 ENV NODE_ENV=production
-ENV DISCORD_TOKEN=NjQ3ODYwMTE1MjM5NzMxMjIw.GMUkrc.laxXsDJPK6PM9n4cSi4mqK325Cc4b8mCI8iIs4
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/locales ./locales
 COPY --from=builder /usr/src/app/package*.json .
