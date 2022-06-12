@@ -6,6 +6,7 @@ import { fileURLToPath, URL } from "node:url"
 import * as events from "./events"
 
 await i18next.use(Backend).init({
+  fallbackLng: Locale.EnglishGB,
   preload: [Locale.EnglishGB, Locale.Dutch],
   backend: {
     loadPath: fileURLToPath(
