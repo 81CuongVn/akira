@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repository
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
 
       - name: 🔒 Log in to Heroku
         env:

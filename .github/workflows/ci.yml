@@ -10,7 +10,7 @@ jobs:
         uses: styfle/cancel-workflow-action@0.9.0
 
       - name: ⬇️ Checkout repository
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
 
       - name: 🐳 Build Docker image
         run: docker build . --target builder -t ${{ github.repository }}
