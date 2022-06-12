@@ -35,19 +35,21 @@ export const execute = async (
     utm_medium: "referral",
   })
 
+  const lng = hide ? interaction.locale : interaction.guildLocale
+
   const messageEmbed = new EmbedBuilder()
     .setColor("Blue")
     .setAuthor({
       iconURL: randomPhoto.response.user.profile_image.small,
       name: i18next.t("commands.panda.attribution", {
-        lng: interaction.locale,
+        lng,
         author: randomPhoto.response.user.name,
       }),
       url: `${randomPhoto.response.user.links.html}?${urlSearchParams}`,
     })
     .setDescription(
       i18next.t("commands.panda.powered_by", {
-        lng: interaction.locale,
+        lng,
         url: `https://unsplash.com/?${urlSearchParams}`,
       })
     )
@@ -56,7 +58,7 @@ export const execute = async (
       text:
         randomPhoto.response.description ??
         randomPhoto.response.alt_description ??
-        i18next.t("commands.panda.no_description", { lng: interaction.locale }),
+        i18next.t("commands.panda.no_description", { lng }),
     })
 
   interaction.reply({ embeds: [messageEmbed], ephemeral: hide ?? true })
