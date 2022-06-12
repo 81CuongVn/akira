@@ -76,6 +76,7 @@ export const interactionCreateEvent = async (interaction: AnyInteraction) => {
       }
     }
   } catch (error) {
+    // TODO: Improve error handling when possible: https://github.com/discordjs/discord.js/pull/8068
     if (error instanceof Error) {
       logger.error("Command failed: %s", command.name)
       logger.error(error, error.message)
