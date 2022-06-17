@@ -43,7 +43,7 @@
     "nanoid": "^4.0.0",
     "pino": "^8.0.0",
     "tslib": "^2.4.0",
-    "undici": "^5.4.0",
+    "undici": "^5.5.1",
     "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
