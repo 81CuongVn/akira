@@ -3,6 +3,6 @@
   "ext": "ts",
   "env": {
     "TS_NODE_TRANSPILE_ONLY": true,
-    "NODE_OPTIONS": "--no-warnings --experimental-specifier-resolution=node --loader ts-node/esm"
+    "NODE_OPTIONS": "--no-warnings --experimental-specifier-resolution=node --loader ts-node/esm -r dotenv/config"
   }
 }

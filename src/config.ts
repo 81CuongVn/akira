@@ -1,9 +1,5 @@
 import convict from "convict"
 
-if (process.env["NODE_ENV"] !== "production") {
-  await import("dotenv/config")
-}
-
 export const config = convict({
   env: {
     doc: "The application environment.",
