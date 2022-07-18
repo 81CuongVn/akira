@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "convict": "^6.2.3",
-    "discord.js": "^14.0.0-dev.1654949087-96053ba",
+    "discord.js": "^14.0.1",
     "i18next": "^21.8.9",
     "i18next-fs-backend": "^1.1.4",
     "ms": "^2.1.3",

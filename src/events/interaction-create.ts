@@ -1,5 +1,5 @@
 import {
-  AnyInteraction,
+  Interaction,
   ApplicationCommandType,
   InteractionType,
 } from "discord.js"
@@ -7,7 +7,7 @@ import i18next from "i18next"
 import { checkConditions } from "../commands/conditions"
 import { logger } from "../logger"
 
-export const interactionCreateEvent = async (interaction: AnyInteraction) => {
+export const interactionCreateEvent = async (interaction: Interaction) => {
   if (
     interaction.type !== InteractionType.ApplicationCommand ||
     !interaction.inCachedGuild()
