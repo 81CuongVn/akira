@@ -53,7 +53,7 @@
     "dotenv": "^16.0.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.0",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.20",
     "pino-pretty": "^8.0.0",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
